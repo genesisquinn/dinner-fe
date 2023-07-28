@@ -1,0 +1,42 @@
+.app-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.recipe-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: grab;
+    background-color: #f8f8f8;
+}
+
+.table-component {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-component th,
+.table-component td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.droppable-area {
+    min-height: 80px;
+    background-color: #fff;
+    cursor: pointer;
+}

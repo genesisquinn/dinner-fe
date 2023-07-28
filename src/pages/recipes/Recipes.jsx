@@ -1,5 +1,5 @@
 import "./recipes.css"
-import RecipeCard from "../../components/recipecards/recipecard"
+import RecipeCard from "../../components/recipecard/recipecard"
 import PageNav from "../../components/pagenav/pagenav.jsx"
 
 
