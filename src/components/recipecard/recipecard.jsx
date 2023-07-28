@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import "./recipecard.css"
 
-const RecipeCard = () => {
+const RecipeCard = ({ setLikesCount }) => {
     const [isLiked, setIsLiked] = useState(() => {
         // Check if the recipe is already liked in localStorage
         return localStorage.getItem('likedRecipe') === 'true';
@@ -17,6 +17,7 @@ const RecipeCard = () => {
 
     const handleLikeClick = () => {
         setIsLiked(!isLiked);
+        setLikesCount((prevCount) => prevCount + (isLiked ? -1 : 1));
     };
 
     const handleSeeRecipeClick = () => {
@@ -41,5 +42,9 @@ const RecipeCard = () => {
         </Card>
     );
 };
+
+RecipeCard.propTypes = {
+    setLikesCount: PropTypes.func.isRequired,
+  };
 
 export default RecipeCard;
