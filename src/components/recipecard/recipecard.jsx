@@ -2,22 +2,24 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import "./recipecard.css"
+import "./recipecard.css";
 
-const RecipeCard = ({ setLikesCount }) => {
+const RecipeCard = ({ setLikesCount, recipeId }) => {
     const [isLiked, setIsLiked] = useState(() => {
-        // Check if the recipe is already liked in localStorage
-        return localStorage.getItem('likedRecipe') === 'true';
+        const storedIsLiked = localStorage.getItem(`likedRecipe_${recipeId}`);
+        return storedIsLiked === 'true';
     });
 
     useEffect(() => {
-        // Save the liked state to localStorage when it changes
-        localStorage.setItem('likedRecipe', isLiked);
-    }, [isLiked]);
+        localStorage.setItem(`likedRecipe_${recipeId}`, isLiked.toString());
+    }, [isLiked, recipeId]);
 
     const handleLikeClick = () => {
-        setIsLiked(!isLiked);
-        setLikesCount((prevCount) => prevCount + (isLiked ? -1 : 1));
+        setIsLiked((prevIsLiked) => {
+            const newIsLiked = !prevIsLiked;
+            setLikesCount((prevCount) => prevCount + (newIsLiked ? 1 : -1));
+            return newIsLiked;
+        });
     };
 
     const handleSeeRecipeClick = () => {
@@ -45,6 +47,7 @@ const RecipeCard = ({ setLikesCount }) => {
 
 RecipeCard.propTypes = {
     setLikesCount: PropTypes.func.isRequired,
-  };
+    recipeId: PropTypes.string.isRequired,
+};
 
 export default RecipeCard;

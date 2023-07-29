@@ -1,12 +1,40 @@
-import RecipeCard from "../../components/recipecard/recipecard"
-import PageNav from "../../components/pagenav/pagenav.jsx"
-import LikesCounter from "../../components/likes"
+// import RecipeCard from "../../components/recipecard/recipecard"
+// import PageNav from "../../components/pagenav/pagenav.jsx"
+// import LikesCounter from "../../components/likes"
+// import { useState, useEffect } from 'react';
+
+// const Recipes = () => {
+//     const [likesCount, setLikesCount] = useState(() => {
+//         const storedLikesCount = localStorage.getItem('likesCount');
+//         return storedLikesCount ? parseInt(storedLikesCount) : 0;
+//     });
+
+
+//     useEffect(() => {
+//         localStorage.setItem('likesCount', likesCount.toString());
+//     }, [likesCount]);
+
+//     return (
+//         <div>
+//             <LikesCounter likesCount={likesCount} />
+//             <RecipeCard setLikesCount={setLikesCount} />
+//             <RecipeCard setLikesCount={setLikesCount} />
+//             <PageNav />
+//         </div>
+//     );
+// }
+
+// export default Recipes;
+import RecipeCard from "../../components/recipecard/recipecard";
+import PageNav from "../../components/pagenav/pagenav.jsx";
+import LikesCounter from "../../components/likes";
 import { useState, useEffect } from 'react';
 
 const Recipes = () => {
+    // Get the likes count from localStorage or set it to 0
     const [likesCount, setLikesCount] = useState(() => {
-        const storedCount = localStorage.getItem('likesCount');
-        return storedCount ? parseInt(storedCount, 10) : 0;
+        const storedLikesCount = localStorage.getItem('likesCount');
+        return storedLikesCount ? parseInt(storedLikesCount) : 0;
     });
 
     useEffect(() => {
@@ -16,10 +44,14 @@ const Recipes = () => {
     return (
         <div>
             <LikesCounter likesCount={likesCount} />
-            <RecipeCard setLikesCount={setLikesCount} />
+            <RecipeCard setLikesCount={setLikesCount} recipeId="recipe1" />
+            <RecipeCard setLikesCount={setLikesCount} recipeId="recipe2" />
             <PageNav />
         </div>
     );
 }
 
 export default Recipes;
+
+
+
