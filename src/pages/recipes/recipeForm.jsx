@@ -25,7 +25,7 @@ const RecipeForm = () => {
         const formData = new FormData(form);
 
         try {
-            await axios.post(`${REACT_APP_BACKEND_URL}`, formData, {
+            await axios.post(`${REACT_APP_BACKEND_URL}/api/recipes`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
