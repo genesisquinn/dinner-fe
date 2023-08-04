@@ -2,16 +2,12 @@ import { useState } from 'react';
 import axios from 'axios';
 // import REACT_APP_BACKEND_URL from '../../App'
 
-const REACT_APP_BACKEND_URL = 'https://dinner-made-easy.onrender.com';
+const REACT_APP_BACKEND_URL = 'https://dinner-made-easy.onrender.com/api/recipes';
 
 const RecipeForm = () => {
     const [infoSubmitObj, setInfoSubmitObj] = useState('');
     const [infoErrorsObj, setInfoErrorsObj] = useState('');
     const [ingredients, setIngredients] = useState(['']);
-
-    const handleAddIngredient = () => {
-        setIngredients([...ingredients, '']);
-    };
 
     const handleIngredientChange = (index, value) => {
         const updatedIngredients = [...ingredients];
