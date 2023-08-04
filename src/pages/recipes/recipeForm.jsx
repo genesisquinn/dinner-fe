@@ -1,4 +1,8 @@
-import  { useState } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+// import REACT_APP_BACKEND_URL from '../../App'
+
+const REACT_APP_BACKEND_URL = 'https://dinner-made-easy.onrender.com';
 
 const RecipeForm = () => {
     const [infoSubmitObj, setInfoSubmitObj] = useState('');
@@ -15,16 +19,27 @@ const RecipeForm = () => {
         setIngredients(updatedIngredients);
     };
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
 
+        const form = event.target;
+        const formData = new FormData(form);
 
-        const fakeSuccessResponse = 'Recipe submitted successfully!';
-        setInfoSubmitObj(fakeSuccessResponse);
+        try {
+            await axios.post(`${REACT_APP_BACKEND_URL}`,  formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
 
-        const fakeErrorResponse = [{ message: 'Oops! Something went wrong.' }];
-        setInfoErrorsObj(fakeErrorResponse);
+            setInfoSubmitObj('Recipe submitted successfully!');
+            setInfoErrorsObj('');
+        } catch (error) {
+            setInfoSubmitObj('');
+            setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
+        }
     };
+
 
     return (
         <>
