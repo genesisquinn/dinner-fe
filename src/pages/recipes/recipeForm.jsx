@@ -76,7 +76,7 @@ const RecipeForm = () => {
 
                             <div className="col-12">
                                 <label htmlFor="description" className="form-label">Description</label>
-                                <textarea name="description" id="description" className="form-control" cols="30" rows="4"></textarea>
+                                <textarea name="Instrcutions" id="description" className="form-control" cols="30" rows="4"></textarea>
                             </div>
 
                             <div className="col-12">
