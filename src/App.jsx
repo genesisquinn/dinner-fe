@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navigation from './navigation/Navigation'
@@ -8,7 +8,7 @@ import Meals from "./pages/meals/Meals"
 import List from './pages/list/List'
 import Submit from './pages/recipes/recipeForm'
 
-const REACT_APP_BACKEND_URL = 'https://dinner-made-easy.onrender.com';
+
 
 
 function App() {
