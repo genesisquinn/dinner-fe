@@ -105,11 +105,11 @@ const RecipeForm = () => {
                                 <label htmlFor="category">Select Category</label>
                                 <select className="form-select form-control" name="category" aria-label="Category">
                                     <option selected>Select Category</option>
-                                    <option value="Asian">Thai</option>
+                                    <option value="Asian">Asian</option>
                                     <option value="American">American</option>
-                                    <option value="Italian">Chinese</option>
-                                    <option value="Caribbean">Mexican</option>
-                                    <option value="Salads">Indian</option>
+                                    <option value="Italian">Italian</option>
+                                    <option value="Caribbean">Caribbean</option>
+                                    <option value="Salads">Salads</option>
                                 </select>
                             </div>
 
