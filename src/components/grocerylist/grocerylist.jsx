@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './groceryList.css';
+import './grocerylist.css';
 import DeleteBtn from '../deletebtn/deletebtn';
 
 const GroceryList = () => {
