@@ -2,8 +2,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navigation from './navigation/Navigation'
-import Home from './pages/home/home'
-import Recipes from './pages/recipes/recipes'
+import Home from './pages/home/Home'
+import Recipes from './pages/recipes/Recipes'
 import Meals from "./pages/meals/Meals"
 import List from './pages/list/List'
 import Submit from './pages/recipes/recipeForm'
