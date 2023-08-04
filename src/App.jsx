@@ -1,11 +1,12 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Navigation from './navigation/navigation'
+import Navigation from './navigation/Navigation'
 import Home from './pages/home/home'
 import Recipes from './pages/recipes/recipes'
 import Meals from "./pages/meals/Meals"
 import List from './pages/list/List'
+import Submit from './pages/recipes/recipeForm'
 
 function App() {
   return (
@@ -16,22 +17,11 @@ function App() {
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/meals" element={<Meals />} />
           <Route path="/list" element={<List />} />
+          <Route path="/submit-recipe" element={<Submit />} />
         </Routes>
       </Router>
   );
 }
 
-//   return (
-//     <Router>
-//       <Navigation />
-//       <Routes>
-//         <Route exact path="/" element={<Home />} />
-//         <Route path="/recipes" element={<Recipes/>} />
-//         <Route path="/meals" element={<Meals/>} />
-//         <Route path="/list" element={<List/>} />
-//       </Routes>
-//     </Router>
-//   );
-// }
 
 export default App

@@ -22,6 +22,7 @@ const Navigation = () => {
                             <Nav.Link as={Link} to="/recipes">Recipes</Nav.Link>
                             <Nav.Link as={Link} to="/meals">Meals</Nav.Link>
                             <Nav.Link as={Link} to="/list">List</Nav.Link>
+                            <Nav.Link as={Link} to="/submit-recipe">Submit Recipe</Nav.Link>
                             <Nav.Link href="#bye">Sign Out</Nav.Link> 
                         </Nav>
                         <Form className="d-flex">
