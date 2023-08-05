@@ -6,7 +6,7 @@ const navigate = (url) => {
 };
 
 const auth = async () => {
-    const response = await fetch('https://dinner-made-easy.onrender.com', { method: 'post' });
+    const response = await fetch('https://dinner-made-easy.onrender.com/request', { method: 'post' });
     const data = await response.json();
     console.log(data);
     navigate(data.url);
