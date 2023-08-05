@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import ImagePreview from '../../components/ImagePreview';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://dinner-made-easy.onrender.com';
 
 const RecipeForm = () => {
     const [infoSubmitObj, setInfoSubmitObj] = useState('');
