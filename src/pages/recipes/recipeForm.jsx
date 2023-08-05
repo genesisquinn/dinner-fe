@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
+import ImagePreview from '../../components/ImagePreview';
 
-const REACT_APP_BACKEND_URL = 'https://dinner-made-easy.onrender.com';
+const BASE_URL = 'http://localhost:3000';
 
 const RecipeForm = () => {
     const [infoSubmitObj, setInfoSubmitObj] = useState('');
@@ -10,7 +11,7 @@ const RecipeForm = () => {
     const [imageFile, setImageFile] = useState(null);
 
     const handleImageChange = (event) => {
-        setImageFile(event.target.files[0])
+        setImageFile(event.target.files[0]) 
     }
 
     const handleAddIngredient = () => {
@@ -25,14 +26,12 @@ const RecipeForm = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
-        const form = event.target;
-        const formData = new FormData(form);
-        
+    
+        const formData = new FormData();
         formData.append('image', imageFile);
 
         try {
-            await axios.post(`${REACT_APP_BACKEND_URL}/api/recipes`, formData, {
+            await axios.post(`${BASE_URL}/recipes`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -71,7 +70,7 @@ const RecipeForm = () => {
                 )}
 
                 <div className='col-8'>
-                    <form onSubmit={handleFormSubmit} encType='multipart/form-data' method='POST'>
+                    <form onSubmit={handleFormSubmit}>
 
                         <div className='row g-3'>
 
@@ -96,7 +95,7 @@ const RecipeForm = () => {
                                                 name='ingredients'
                                                 className='form-control'
                                                 value={ingredient}
-                                                onChange={(e) => handleIngredientChange(index, e.target.value)}
+                                                onChange={(event) => handleIngredientChange(index, event.target.value)}
                                             />
                                         </div>
                                     ))}
@@ -121,7 +120,8 @@ const RecipeForm = () => {
 
                             <div className='col-12'>
                                 <label htmlFor='image'>Product Image</label>
-                                <input type="file" className="form-control" name="image" accept="image/*" onChange={handleImageChange} />
+                                <input type="file" className="form-control" name="image" accept="image/*"  onChange={handleImageChange} />
+                                <ImagePreview image={imageFile}/>
                             </div>
 
                             <div className='col-12'>
