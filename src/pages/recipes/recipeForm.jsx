@@ -28,9 +28,9 @@ const RecipeForm = () => {
             event.preventDefault();
     
             const formData = new FormData();
-            console.log(`${event.target.instructions.value}`);
             formData.append('name', event.target.name.value);
             formData.append('instructions', event.target.instructions.value);
+            console.log(`${event.target.instructions.value}`);
             formData.append('ingredients', JSON.stringify(ingredients));
             formData.append('category', event.target.category.value);
             formData.append('image', imageFile);
