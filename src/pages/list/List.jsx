@@ -1,12 +1,16 @@
 import "./list.css"
-import Groceries from "../../components/grocerylist/grocerylist"
+import GroceryList from "../../components/grocerylist/grocerylist";
 
 const List = () => {
+    // Fetch grocery items from local storage and parse them
+    const storedGroceryItems = localStorage.getItem('groceryItems');
+    const groceryItems = storedGroceryItems ? JSON.parse(storedGroceryItems) : [];
+
     return (
         <div>
-            <Groceries />
+            <GroceryList items={groceryItems} setItems={() => {}} />
         </div>
     )
 }
 
-export default List 
+export default List;
