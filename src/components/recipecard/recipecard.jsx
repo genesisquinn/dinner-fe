@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import "./recipecard.css";
 
-const RecipeCard = ({ setLikesCount, recipeId }) => {
+const RecipeCard = ({ setLikesCount, recipeId, name, category, image }) => {
     const [isLiked, setIsLiked] = useState(() => {
         const storedIsLiked = localStorage.getItem(`likedRecipe_${recipeId}`);
         return storedIsLiked === 'true';
@@ -25,10 +25,14 @@ const RecipeCard = ({ setLikesCount, recipeId }) => {
 
     return (
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img
+                variant="top"
+                src={image}
+                alt={name}
+            />
             <Card.Body>
-                <Card.Title>Name </Card.Title>
-                <Card.Text>Category </Card.Text>
+                <Card.Title>{name} </Card.Title>
+                <Card.Text>{category}</Card.Text>
                 <div className="card-buttons">
                     <Link to={`/recipes/${recipeId}`} className="recipe-btn">
                         See Recipe
@@ -45,6 +49,9 @@ const RecipeCard = ({ setLikesCount, recipeId }) => {
 RecipeCard.propTypes = {
     setLikesCount: PropTypes.func.isRequired,
     recipeId: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired, 
 };
 
 export default RecipeCard;
