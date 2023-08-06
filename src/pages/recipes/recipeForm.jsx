@@ -2,7 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import ImagePreview from '../../components/ImagePreview';
 
-const BASE_URL = 'https://dinner-made-easy.onrender.com';
+// const BASE_URL = 'https://dinner-made-easy.onrender.com';
+const BASE_URL = 'http://localhost:3000';
 
 const RecipeForm = () => {
     const [infoSubmitObj, setInfoSubmitObj] = useState('');
@@ -48,29 +49,7 @@ const RecipeForm = () => {
                 setInfoSubmitObj('');
                 setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
             }
-        };
-
-
-    // const handleFormSubmit = async (event) => {
-    //     event.preventDefault();
-    
-    //     const formData = new FormData();
-    //     formData.append('image', imageFile);
-
-    //     try {
-    //         await axios.post(`${BASE_URL}/recipes`, formData, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //             },
-    //         });
-
-    //         setInfoSubmitObj('Recipe submitted successfully!');
-    //         setInfoErrorsObj('');
-    //     } catch (error) {
-    //         setInfoSubmitObj('');
-    //         setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
-    //     }
-    // };
+    }
 
 
         return (
@@ -107,7 +86,7 @@ const RecipeForm = () => {
                             </div>
 
                             <div className='col-12'>
-                                <label htmlFor='description' className='form-label'>Instructions</label>
+                                <label htmlFor='instructions' className='form-label'>Instructions</label>
                                 <textarea name='instructions' id='instructions' className='form-control' cols='30' rows='4'></textarea>
                             </div>
 
@@ -152,7 +131,7 @@ const RecipeForm = () => {
                             </div>
 
                             <div className='col-12'>
-                                <button type='submit' className='btn btn-primary' onClick={handleFormSubmit}>Submit Recipe</button>
+                                <button type='submit' className='btn btn-primary'>Submit Recipe</button>
                             </div>
 
                         </div>
@@ -166,3 +145,5 @@ const RecipeForm = () => {
 };
 
 export default RecipeForm;
+
+

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 import "./recipecard.css";
 
 const RecipeCard = ({ setLikesCount, recipeId }) => {
@@ -22,20 +23,16 @@ const RecipeCard = ({ setLikesCount, recipeId }) => {
         });
     };
 
-    const handleSeeRecipeClick = () => {
-        console.log('See Recipe Clicked');
-    };
-
     return (
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
-                <Card.Title>Recipe Name</Card.Title>
-                <Card.Text>Recipe Description</Card.Text>
+                <Card.Title>Name </Card.Title>
+                <Card.Text>Category </Card.Text>
                 <div className="card-buttons">
-                    <Button variant="primary" onClick={handleSeeRecipeClick}>
+                    <Link to={`/recipes/${recipeId}`} className="recipe-btn">
                         See Recipe
-                    </Button>
+                    </Link>
                     <Button variant={isLiked ? 'danger' : 'secondary'} onClick={handleLikeClick}>
                         {isLiked ? '❤️ Liked' : '♡ Like'}
                     </Button>
