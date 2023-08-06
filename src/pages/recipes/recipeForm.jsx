@@ -22,31 +22,57 @@ const RecipeForm = () => {
         const updatedIngredients = [...ingredients];
         updatedIngredients[index] = value;
         setIngredients(updatedIngredients);
-    };
+    }
 
     const handleFormSubmit = async (event) => {
-        event.preventDefault();
+            event.preventDefault();
     
-        const formData = new FormData();
-        formData.append('image', imageFile);
+            const formData = new FormData();
+            formData.append('name', event.target.name.value);
+            formData.append('instructions', event.target.instructions.value);
+            formData.append('ingredients', JSON.stringify(ingredients));
+            formData.append('category', event.target.category.value);
+            formData.append('image', imageFile);
+    
+            try {
+                await axios.post(`${BASE_URL}/submit-recipe`, formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+    
+                setInfoSubmitObj('Recipe submitted successfully!');
+                setInfoErrorsObj('');
+            } catch (error) {
+                setInfoSubmitObj('');
+                setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
+            }
+        };
 
-        try {
-            await axios.post(`${BASE_URL}/recipes`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
 
-            setInfoSubmitObj('Recipe submitted successfully!');
-            setInfoErrorsObj('');
-        } catch (error) {
-            setInfoSubmitObj('');
-            setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
-        }
-    };
+    // const handleFormSubmit = async (event) => {
+    //     event.preventDefault();
+    
+    //     const formData = new FormData();
+    //     formData.append('image', imageFile);
+
+    //     try {
+    //         await axios.post(`${BASE_URL}/recipes`, formData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         });
+
+    //         setInfoSubmitObj('Recipe submitted successfully!');
+    //         setInfoErrorsObj('');
+    //     } catch (error) {
+    //         setInfoSubmitObj('');
+    //         setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
+    //     }
+    // };
 
 
-    return (
+        return (
         <>
             <div className='px-4 py-5 my-5 text-center'>
                 <h1 className='display-5 fw-bold'>Submit Your Recipe</h1>
