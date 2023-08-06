@@ -35,7 +35,7 @@ const RecipeForm = () => {
             formData.append('image', imageFile);
     
             try {
-                await axios.post(`${BASE_URL}/submit-recipe`, formData, {
+                await axios.post(`${BASE_URL}/recipes`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
