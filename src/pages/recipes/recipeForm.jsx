@@ -22,7 +22,7 @@ const RecipeForm = () => {
         const updatedIngredients = [...ingredients];
         updatedIngredients[index] = value;
         setIngredients(updatedIngredients);
-    }
+    };
 
     const handleFormSubmit = async (event) => {
             event.preventDefault();
