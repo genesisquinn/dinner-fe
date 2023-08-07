@@ -31,8 +31,9 @@ const RecipeForm = () => {
             const formData = new FormData();
             formData.append('name', event.target.name.value);
             formData.append('instructions', event.target.instructions.value);
-            console.log(`${event.target.instructions.value}`);
-            formData.append('ingredients', JSON.stringify(ingredients));
+            ingredients.forEach((ingredient) => {
+                formData.append('ingredients', ingredient);
+            });
             formData.append('category', event.target.category.value);
             formData.append('image', imageFile);
     

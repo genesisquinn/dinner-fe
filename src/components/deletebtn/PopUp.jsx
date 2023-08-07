@@ -21,3 +21,5 @@ PopUp.propTypes = {
 };
 
 export default PopUp;
+
+

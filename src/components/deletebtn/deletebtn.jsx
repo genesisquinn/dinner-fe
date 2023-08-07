@@ -32,3 +32,5 @@ DeleteBtn.propTypes = {
     onDelete: PropTypes.func.isRequired,}
 
 export default DeleteBtn;
+
+

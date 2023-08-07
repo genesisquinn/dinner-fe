@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './grocerylist.css';
 import DeleteBtn from '../deletebtn/deletebtn';
+import PopUp from '../deletebtn/PopUp';
 
-const GroceryList = ({ items, setItems }) => {
+const GroceryList = ({ items, setItems, onDelete }) => {
     const [newItem, setNewItem] = useState('');
+    const [showDialog, setShowDialog] = useState(false);
 
     useEffect(() => {
         // Load grocery items from local storage when the component mounts
@@ -27,14 +29,18 @@ const GroceryList = ({ items, setItems }) => {
         setItems(updatedItems);
     };
 
-    const removeItem = (index) => {
-        const updatedItems = [...items];
-        updatedItems.splice(index, 1);
-        setItems(updatedItems);
+    const deleteAllItems = () => {
+        setShowDialog(true);
     };
 
-    const deleteAllItems = () => {
-        setItems([]);
+    const handleConfirm = () => {
+        onDelete();
+        setItems([]); // This will delete all the items by setting the state to an empty array.
+        setShowDialog(false);
+    };
+
+    const handleCancel = () => {
+        setShowDialog(false);
     };
 
     // Save grocery items to local storage whenever 'items' changes
@@ -57,27 +63,30 @@ const GroceryList = ({ items, setItems }) => {
             {items.length === 0 ? (
                 <p className="empty-list-message">There is nothing on your list!</p>
             ) : (
-                <ul className="grocery-list">
-                    {items.map((item, index) =>
-                        JSON.parse(item.name).map((ingredient, idx) => (
-                            <li key={index + idx} className={item.crossed ? 'crossed-out' : ''}>
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        checked={item.crossed}
-                                        onChange={() => toggleItem(index)}
-                                    />
-                                    {ingredient.trim()}
-                                </label>
-                                {item.crossed && (
-                                    <button onClick={() => removeItem(index)}>Remove</button>
-                                )}
-                            </li>
-                        ))
-                    )}
-                </ul>
+                <div className="grocery-items">
+                    {items.map((item, index) => (
+                        <div
+                            key={index}
+                            className={`grocery-item ${item.crossed ? 'crossed-out' : ''}`}
+                            onClick={() => toggleItem(index)}
+                        >
+                            {item.name
+                                .replace(/[[\]]/g, '') // Remove square brackets
+                                .replace(/['"]/g, '') // Remove single and double quotes
+                                .split(',')
+                                .map((ingredient, idx) => (
+                                    <div key={idx} className="ingredient">
+                                        {ingredient.trim()}
+                                    </div>
+                                ))}
+                        </div>
+                    ))}
+                </div>
             )}
             <DeleteBtn onDelete={deleteAllItems} />
+            {showDialog && (
+                <PopUp onConfirm={handleConfirm} onCancel={handleCancel} />
+            )}
         </div>
     );
 };
@@ -90,6 +99,7 @@ GroceryList.propTypes = {
         })
     ).isRequired,
     setItems: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
 };
 
 export default GroceryList;
