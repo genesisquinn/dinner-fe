@@ -4,7 +4,7 @@ import './grocerylist.css';
 import DeleteBtn from '../deletebtn/deletebtn';
 import PopUp from '../deletebtn/PopUp';
 
-const GroceryList = ({ items, setItems, likedIngredients }) => {
+const GroceryList = ({ items, setItems, likedIngredients, onLikedIngredientsUpdate }) => {
     const [showDialog, setShowDialog] = useState(false);
 
     useEffect(() => {
@@ -20,7 +20,8 @@ const GroceryList = ({ items, setItems, likedIngredients }) => {
 
     const handleConfirm = () => {
         setItems([]);
-        setShowDialog(false);
+        setShowDialog(false)
+        onLikedIngredientsUpdate([]);
     };
 
     const handleCancel = () => {
@@ -92,6 +93,7 @@ GroceryList.propTypes = {
     ).isRequired,
     setItems: PropTypes.func.isRequired,
     likedIngredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onLikedIngredientsUpdate: PropTypes.func.isRequired
 };
 
 export default GroceryList;

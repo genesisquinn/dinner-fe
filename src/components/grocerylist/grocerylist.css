@@ -1,4 +1,4 @@
-/* GroceryList.css */
+
 
 .grocery-container {
     max-width: 400px;
@@ -41,16 +41,16 @@ button:hover {
 }
 
 .grocery-list {
-    display: grid; /* Use grid layout for the grocery list */
-    grid-template-columns: 1fr; /* Single column grid layout */
-    gap: 5px; /* Gap between grid items */
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 5px; 
     padding: 0;
 }
 
 .grocery-item {
     display: flex;
-    align-items: center; /* Align items vertically */
-    justify-content: space-between; /* Push buttons to the right */
+    align-items: center; 
+    justify-content: space-between; 
     padding: 8px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
