@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import GroceryList from "../../components/grocerylist/grocerylist";
+import GroceryList from "../components/grocerylist";
 
 const List = () => {
     const storedGroceryItems = localStorage.getItem('groceryItems');

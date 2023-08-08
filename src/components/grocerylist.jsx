@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './grocerylist.css';
-import DeleteBtn from '../deletebtn/deletebtn';
-import PopUp from '../deletebtn/PopUp';
+import DeleteBtn from './deletebtn';
+import PopUp from './PopUp';
 
 const GroceryList = ({ items, setItems, likedIngredients, onLikedIngredientsUpdate }) => {
     const [showDialog, setShowDialog] = useState(false);

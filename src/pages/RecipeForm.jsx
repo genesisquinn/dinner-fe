@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import ImagePreview from '../../components/ImagePreview';
+import ImagePreview from '../components/ImagePreview';
 
 // const BASE_URL = 'https://dinner-made-easy.onrender.com';
 const BASE_URL = 'http://localhost:3000';

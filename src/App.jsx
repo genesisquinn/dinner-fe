@@ -1,13 +1,13 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Navigation from './navigation/Navigation';
-import Home from './pages/home/Home';
-import Recipes from './pages/recipes/recipes';
-import Meals from "./pages/meals/Meals";
-import List from './pages/list/List';
-import Submit from './pages/recipes/recipeForm';
-import RecipeDetails from './components/RecipeDetails/RecipeDetails';
+import Home from './pages/Home';
+import Recipes from './pages/recipes';
+import Meals from "./pages/Meals";
+import List from './pages/List';
+import Submit from './pages/recipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import Navigation from './components/Navigation';
 
 
 

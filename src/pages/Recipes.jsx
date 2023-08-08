@@ -102,11 +102,11 @@
 
 
 import { useState, useEffect } from 'react';
-import RecipeCard from "../../components/recipecard/recipecard";
-import PageNav from "../../components/pagenav/pagenav.jsx";
-import LikesCounter from "../../components/likes";
+import RecipeCard from "../components/recipecard";
+import PageNav from "../components/pagenav.jsx";
+import LikesCounter from "../components/likes";
 import axios from 'axios';
-import ResetButton from '../../components/ResetBtn'
+import ResetButton from '../components/ResetBtn'
 
 
 const BASE_URL = 'http://localhost:3000';

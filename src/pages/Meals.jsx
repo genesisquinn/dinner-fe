@@ -1,4 +1,4 @@
-import "./meals.css"
+import "./Meals.css"
 
 const Meals = () => {
     return (
