@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import './recipecard.css';
+import './RecipeCard.css';
 
 const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate,}) => {
     const [isLiked, setIsLiked] = useState(() => {
