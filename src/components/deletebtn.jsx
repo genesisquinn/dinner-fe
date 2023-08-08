@@ -29,6 +29,7 @@ const DeleteBtn = ({ onDelete }) => {
 };
 
 DeleteBtn.propTypes = {
-    onDelete: PropTypes.func.isRequired,}
+    onDelete: PropTypes.func.isRequired,
+};
 
 export default DeleteBtn;

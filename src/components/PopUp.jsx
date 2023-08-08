@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import "./PopUp.css";
 
 const PopUp = ({ onConfirm, onCancel }) => {
+
     return (
         <div className="overlay">
             <div className="confirmation-dialog">
@@ -21,3 +22,4 @@ PopUp.propTypes = {
 };
 
 export default PopUp;
+

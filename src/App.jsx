@@ -1,12 +1,14 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Navigation from './navigation/Navigation'
-import Home from './pages/home/Home'
-import Recipes from './pages/recipes/Recipes'
-import Meals from "./pages/meals/Meals"
-import List from './pages/list/List'
-import Submit from './pages/recipes/recipeForm'
+import Home from './pages/Home';
+import Recipes from './pages/Recipes';
+import Meals from "./pages/Meals";
+import List from './pages/List';
+import Submit from './pages/RecipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import Navigation from './components/Navigation';
+
 
 
 
@@ -21,6 +23,7 @@ function App() {
           <Route path="/meals" element={<Meals />} />
           <Route path="/list" element={<List />} />
           <Route path="/submit-recipe" element={<Submit />} />
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
         </Routes>
       </Router>
   );

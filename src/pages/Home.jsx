@@ -1,5 +1,5 @@
-import "./home.css"
-import googleButton from "../../assets/google_sign_in_buttons/google_btn_light.png"
+import "./Home.css"
+import googleButton from '../assets/GoogleBtn.png';
 
 const navigate = (url) => {
     window.location.href = url;

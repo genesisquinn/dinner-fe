@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import ImagePreview from '../../components/ImagePreview';
+import ImagePreview from '../components/ImagePreview';
 
 // const BASE_URL = 'https://dinner-made-easy.onrender.com';
 const BASE_URL = 'http://localhost:3000';
@@ -31,8 +31,9 @@ const RecipeForm = () => {
             const formData = new FormData();
             formData.append('name', event.target.name.value);
             formData.append('instructions', event.target.instructions.value);
-            console.log(`${event.target.instructions.value}`);
-            formData.append('ingredients', JSON.stringify(ingredients));
+            ingredients.forEach((ingredient) => {
+                formData.append('ingredients', ingredient);
+            });
             formData.append('category', event.target.category.value);
             formData.append('image', imageFile);
     
