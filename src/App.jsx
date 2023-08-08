@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
-import Recipes from './pages/recipes';
+import Recipes from './pages/Recipes';
 import Meals from "./pages/Meals";
 import List from './pages/List';
 import Submit from './pages/RecipeForm';
