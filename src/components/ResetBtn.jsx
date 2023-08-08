@@ -1,12 +1,7 @@
 
 const ResetButton = () => {
     const handleResetClick = () => {
-        
-        localStorage.removeItem('likedRecipesCount');
-        localStorage.removeItem('likedIngredients');
-        localStorage.removeItem('groceryItems');
-
-
+        localStorage.clear();
         window.location.reload();
     };
 
