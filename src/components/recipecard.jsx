@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import './RecipeCard.css';
 
-const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate}) => {
+const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate,  onAddToGroceryList}) => {
     const [isLiked, setIsLiked] = useState(() => {
         const storedIsLiked = localStorage.getItem(`likedRecipe_${recipeId}`);
         return storedIsLiked === 'true';
@@ -26,7 +26,7 @@ const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngre
                 localStorage.setItem('likedRecipesCount', newIsLiked ? likedRecipesCount + 1 : likedRecipesCount - 1);
 
                 if (newIsLiked) {
-                    addToGroceryList(ingredients);
+                    onAddToGroceryList(ingredients);
                 } else {
                     removeFromGroceryList(ingredients);
                 }
@@ -38,17 +38,6 @@ const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngre
         }
     };
 
-
-    const addToGroceryList = (ingredientsToAdd) => {
-        const groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
-        const newGroceryItems = [
-            ...groceryItems,
-            ...ingredientsToAdd.map((ingredient) => ({ name: ingredient, crossed: false })),
-        ];
-        localStorage.setItem('groceryItems', JSON.stringify(newGroceryItems));
-
-        onLikedIngredientsUpdate(newGroceryItems.map((item) => item.name));
-    };
 
     const removeFromGroceryList = (ingredientsToRemove) => {
         const groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
@@ -86,6 +75,7 @@ RecipeCard.propTypes = {
     image: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     onLikedIngredientsUpdate: PropTypes.func.isRequired,
+    onAddToGroceryList: PropTypes.func.isRequired
 };
 
 export default RecipeCard;

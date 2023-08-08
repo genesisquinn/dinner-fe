@@ -59,11 +59,27 @@ const Recipes = () => {
         });
         setRecipes(updatedRecipes);
     };
+    
+    const addToGroceryList = (ingredientsToAdd) => {
+        const groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
+        const newGroceryItems = [
+            ...groceryItems,
+            ...ingredientsToAdd.map((ingredient) => ({ name: ingredient, crossed: false })),
+        ];
+        localStorage.setItem('groceryItems', JSON.stringify(newGroceryItems));
+
+        handleLikedIngredientsUpdate(newGroceryItems.map((item) => item.name));
+    };
 
 
     return (
         <div>
-            <RandomizerButton recipes={recipesWithLikedProperty} onRandomLike={handleRandomLike} />
+            <RandomizerButton
+                recipes={recipesWithLikedProperty}
+                onRandomLike={handleRandomLike}
+                likedIngredients={likedIngredients} 
+                onAddToGroceryList={addToGroceryList} 
+            />
             <LikesCounter likesCount={likesCount} />
             <ResetButton  />
             {recipes.map((recipe) => (
@@ -76,6 +92,7 @@ const Recipes = () => {
                     image={recipe.image}
                     ingredients={recipe.ingredients}
                     onLikedIngredientsUpdate={handleLikedIngredientsUpdate}
+                    onAddToGroceryList={addToGroceryList} 
                 />
             ))}
         </div>

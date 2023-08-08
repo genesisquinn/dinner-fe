@@ -1,23 +1,45 @@
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 
-const RandomizerButton = ({ recipes }) => {
-    const handleRandomizeClick = () => {
+const RandomizerButton = ({ recipes, onAddToGroceryList }) => {
+
+    const randomizeRecipes = (recipes, maxLikes) => {
         const randomRecipeIds = [];
-        const maxLikes = 7; 
         while (randomRecipeIds.length < maxLikes) {
             const randomIndex = Math.floor(Math.random() * recipes.length);
             const randomRecipe = recipes[randomIndex];
             if (!randomRecipe.liked) {
                 randomRecipeIds.push(randomRecipe._id);
-                randomRecipe.liked = true; 
+                randomRecipe.liked = true;
             }
         }
+        return randomRecipeIds;
+    };
+
+    const recipeIngredients = (recipeId, recipes) => {
+        const recipe = recipes.find((recipe) => recipe._id === recipeId);
+        if (recipe) {
+            return recipe.ingredients;
+        }
+        return [];
+    };
+    
+    const handleRandomizeClick = () => {
+        const maxLikes = 7;
+        const randomRecipeIds = randomizeRecipes(recipes, maxLikes);
     
         randomRecipeIds.forEach((recipeId) => {
             localStorage.setItem(`likedRecipe_${recipeId}`, 'true');
+
+            const ingredients = recipeIngredients(recipeId, recipes);
+
+            const likedIngredients = JSON.parse(localStorage.getItem('likedIngredients')) || [];
+            likedIngredients.push(...ingredients);
+
+            onAddToGroceryList(likedIngredients);
+            window.location.reload();
         });
-        window.location.reload(); 
+
     };
 
     return (
@@ -34,6 +56,8 @@ RandomizerButton.propTypes = {
             liked: PropTypes.bool.isRequired,
         })
     ).isRequired,
+    onLikedIngredientsUpdate: PropTypes.func.isRequired,
+    onAddToGroceryList: PropTypes.func.isRequired
 };
 
 export default RandomizerButton;
