@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import './RecipeCard.css';
 
-const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate,}) => {
+const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate}) => {
     const [isLiked, setIsLiked] = useState(() => {
         const storedIsLiked = localStorage.getItem(`likedRecipe_${recipeId}`);
         return storedIsLiked === 'true';
@@ -86,7 +86,6 @@ RecipeCard.propTypes = {
     image: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     onLikedIngredientsUpdate: PropTypes.func.isRequired,
-    reset: PropTypes.bool.isRequired
 };
 
 export default RecipeCard;

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import RecipeCard from "../components/RecipeCard";
 import LikesCounter from "../components/Likes";
 import axios from 'axios';
 import ResetButton from '../components/ResetBtn'
+import RecipeCard from '../components/recipecard';
+import RandomizerButton from '../components/Randomizer';
 
 
 const BASE_URL = 'http://localhost:3000';
@@ -43,12 +44,26 @@ const Recipes = () => {
     useEffect(() => {
         localStorage.setItem('likedIngredients', JSON.stringify(likedIngredients));
     }, [likedIngredients]);
-    
 
-    
+    const recipesWithLikedProperty = recipes.map((recipe) => ({
+        ...recipe,
+        liked: localStorage.getItem(`likedRecipe_${recipe._id}`) === 'true',
+    }));
+
+    const handleRandomLike = (randomRecipeIds) => {
+        const updatedRecipes = recipes.map((recipe) => {
+            if (randomRecipeIds.includes(recipe._id)) {
+                return { ...recipe, liked: true };
+            }
+            return recipe;
+        });
+        setRecipes(updatedRecipes);
+    };
+
 
     return (
         <div>
+            <RandomizerButton recipes={recipesWithLikedProperty} onRandomLike={handleRandomLike} />
             <LikesCounter likesCount={likesCount} />
             <ResetButton  />
             {recipes.map((recipe) => (
