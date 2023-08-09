@@ -4,6 +4,9 @@ import axios from 'axios';
 import ResetButton from '../components/ResetBtn'
 import RecipeCard from '../components/recipecard';
 import RandomizerButton from '../components/Randomizer';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import './Recipes.css'
 
 
 const BASE_URL = 'http://localhost:3000';
@@ -59,7 +62,7 @@ const Recipes = () => {
         });
         setRecipes(updatedRecipes);
     };
-    
+
     const addToGroceryList = (ingredientsToAdd) => {
         const groceryItems = JSON.parse(localStorage.getItem('groceryItems')) || [];
         const newGroceryItems = [
@@ -71,30 +74,78 @@ const Recipes = () => {
         handleLikedIngredientsUpdate(newGroceryItems.map((item) => item.name));
     };
 
+    const [isLikesBoxSticky, setIsLikesBoxSticky] = useState(false);
+
+    const handleScroll = () => {
+        if (window.scrollY > 200) {
+            setIsLikesBoxSticky(true);
+        } else {
+            setIsLikesBoxSticky(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    useEffect(() => {
+        const filtered = recipes.filter(recipe =>
+            recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setFilteredRecipes(filtered);
+    }, [searchQuery, recipes]);
 
     return (
-        <div>
-            <RandomizerButton
-                recipes={recipesWithLikedProperty}
-                onRandomLike={handleRandomLike}
-                likedIngredients={likedIngredients} 
-                onAddToGroceryList={addToGroceryList} 
-            />
-            <LikesCounter likesCount={likesCount} />
-            <ResetButton  />
-            {recipes.map((recipe) => (
-                <RecipeCard
-                    key={recipe._id}
-                    setLikesCount={setLikesCount}
-                    recipeId={recipe._id}
-                    name={recipe.name}
-                    category={recipe.category}
-                    image={recipe.image}
-                    ingredients={recipe.ingredients}
-                    onLikedIngredientsUpdate={handleLikedIngredientsUpdate}
-                    onAddToGroceryList={addToGroceryList} 
+        <div className="recipes-container">
+            <Form className="search-bar d-flex">
+                <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    value={searchQuery}
+                    onChange={handleSearchChange} 
                 />
-            ))}
+                <Button variant="outline-success">Search</Button>
+            </Form>
+            <div className={`buttons-container ${isLikesBoxSticky ? 'sticky' : ''}`}>
+                <ResetButton className="reset-button" />
+                <RandomizerButton className="randomizer-button"
+                    recipes={recipesWithLikedProperty}
+                    onRandomLike={handleRandomLike}
+                    likedIngredients={likedIngredients}
+                    onAddToGroceryList={addToGroceryList}
+                />
+                <div className="likes-count-box">
+                    <LikesCounter className="likes-counter" likesCount={likesCount} />
+                </div>
+            </div>
+            <div className="recipe-cards">
+    {filteredRecipes.map((recipe) => (
+        <RecipeCard
+            key={recipe._id}
+            className="recipe-card"
+            setLikesCount={setLikesCount}
+            recipeId={recipe._id}
+            name={recipe.name}
+            category={recipe.category}
+            image={recipe.image}
+            ingredients={recipe.ingredients}
+            onLikedIngredientsUpdate={handleLikedIngredientsUpdate}
+            onAddToGroceryList={addToGroceryList}
+        />
+    ))}
+</div>
         </div>
     );
 };

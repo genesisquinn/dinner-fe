@@ -1,0 +1,76 @@
+/* recipes.css */
+
+/* Container for the whole component */
+.recipes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Search bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+/* Reset and Random buttons */
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Recipe cards grid */
+.recipe-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* 4 cards in a row */
+    gap: 20px;
+}
+
+/* Individual recipe card */
+.recipe-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Likes counter */
+.likes-counter {
+    margin-bottom: 10px;
+}
+
+/* Reset button */
+.reset-button {
+    margin-right: 10px;
+}
+
+/* Randomizer button */
+.randomizer-button {
+    margin-left: 10px;
+}
+
+.likes-count-box{
+    position: sticky;
+    height: 100%;
+    top: 0px;
+    /* Adjust this value as needed */
+    background-color: #f0f0f0;
+    /* Background color for the box */
+    border: 2px solid #333;
+    /* Border for the box */
+    padding: 5px 10px;
+    /* Padding for the content inside the box */
+    text-align: center;
+    /* Center the text horizontally */
+    z-index: 1;
+    /* Ensure the box is displayed above the other content */
+}

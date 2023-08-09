@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import './RecipeCard.css';
 
-const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate,  onAddToGroceryList}) => {
+const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngredientsUpdate, onAddToGroceryList }) => {
     const [isLiked, setIsLiked] = useState(() => {
         const storedIsLiked = localStorage.getItem(`likedRecipe_${recipeId}`);
         return storedIsLiked === 'true';
@@ -36,6 +36,15 @@ const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngre
 
             alert('YOU HAVE 7 LIKED RECIPES FOR THE WEEK');
         }
+
+        localStorage.setItem(`likedRecipe_${recipeId}`, 'true');
+        localStorage.setItem(`recipe_${recipeId}`, JSON.stringify({
+            _id: recipeId,
+            name,
+            category,
+            image,
+            ingredients
+        }));
     };
 
 
@@ -47,7 +56,7 @@ const RecipeCard = ({ recipeId, name, category, image, ingredients, onLikedIngre
         onLikedIngredientsUpdate(newGroceryItems.map((item) => item.name));
     };
 
-    
+
 
     return (
         <Card style={{ width: '18rem' }}>

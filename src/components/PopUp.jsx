@@ -6,10 +6,10 @@ const PopUp = ({ onConfirm, onCancel }) => {
     return (
         <div className="overlay">
             <div className="confirmation-dialog">
-                <p>Are you sure you want to delete all items?</p>
+                <p>Are you sure? This action can not be undone.</p>
                 <div className="buttons">
                     <button onClick={onCancel}>Cancel</button>
-                    <button onClick={onConfirm}>Delete</button>
+                    <button onClick={onConfirm}>Reset</button>
                 </div>
             </div>
         </div>

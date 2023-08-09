@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 
+
 const RandomizerButton = ({ recipes, onAddToGroceryList }) => {
 
     const randomizeRecipes = (recipes, maxLikes) => {
@@ -27,6 +28,7 @@ const RandomizerButton = ({ recipes, onAddToGroceryList }) => {
     const handleRandomizeClick = () => {
         const maxLikes = 7;
         const randomRecipeIds = randomizeRecipes(recipes, maxLikes);
+
     
         randomRecipeIds.forEach((recipeId) => {
             localStorage.setItem(`likedRecipe_${recipeId}`, 'true');
@@ -37,7 +39,9 @@ const RandomizerButton = ({ recipes, onAddToGroceryList }) => {
             likedIngredients.push(...ingredients);
 
             onAddToGroceryList(likedIngredients);
+
             window.location.reload();
+            
         });
 
     };
@@ -56,12 +60,10 @@ RandomizerButton.propTypes = {
             liked: PropTypes.bool.isRequired,
         })
     ).isRequired,
-    onLikedIngredientsUpdate: PropTypes.func.isRequired,
-    onAddToGroceryList: PropTypes.func.isRequired
+    onAddToGroceryList: PropTypes.func.isRequired,
 };
 
 export default RandomizerButton;
-
 
 
 
