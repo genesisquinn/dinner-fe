@@ -40,23 +40,22 @@ const RecipeEditForm = ({ recipeId , toggleEditMode }) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-
-        const formData = new FormData();
-        formData.append('name', event.target.name.value);
-        formData.append('instructions', event.target.instructions.value);
-        ingredients.forEach((ingredient) => {
-            formData.append('ingredients', ingredient);
-        });
-        formData.append('category', event.target.category.value);
-        formData.append('image', imageFile);
-
+    
+        const updatedRecipe = {
+            name: event.target.name.value,
+            instructions: event.target.instructions.value,
+            ingredients: ingredients,
+            category: event.target.category.value,
+            image: imageFile
+        };
+    
         try {
-            await axios.put(`${BASE_URL}/recipes/${recipeId}`, formData, {
+            await axios.put(`${BASE_URL}/recipes/${recipeId}`, updatedRecipe, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'application/json',
                 },
             });
-
+    
             setInfoSubmitObj('Recipe updated successfully!');
             setInfoErrorsObj('');
             toggleEditMode();
@@ -64,7 +63,8 @@ const RecipeEditForm = ({ recipeId , toggleEditMode }) => {
             setInfoSubmitObj('');
             setInfoErrorsObj([{ message: 'Oops! Something went wrong.' }]);
         }
-}
+    }
+    
 
     if (!recipe) {
         return <p>Loading...</p>;
