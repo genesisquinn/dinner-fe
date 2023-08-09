@@ -6,7 +6,7 @@ import Recipes from './pages/Recipes';
 import Meals from "./pages/Meals";
 import List from './pages/List';
 import Submit from './pages/RecipeForm';
-import RecipeDetails from './components/RecipeDetails';
+import RecipeDetails from './pages/RecipeDetails';
 import Navigation from './components/Navigation';
 
 
